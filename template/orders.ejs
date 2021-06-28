@@ -1,0 +1,56 @@
+<section class="orders light-section">
+    <div class="container mx-auto pt-12">
+        <h1 class="font-bold mb-4 orderheading"> All Orders </h1> 
+        <% if(messages.success) { %>
+        <div id="success-alert" class="flex items-center bg-green-500 text-white font-bold px-4 py-3 alertstrip" role="alert">
+            <i class="fas fa-info-circle mr-3"></i>
+            <p><%= messages.success%></p>
+            
+        </div>
+        <% } %>
+        <table class="w-full table-auto bg-white mt-3 ordertable">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2 text-left ordertablehead">Orders</th>
+                    <th class="border px-4 py-2 text-left ordertablehead"> Contact No.</th>
+                    <th class="border px-4 py-2 text-left ordertablehead"> Address</th>
+                    <th class="border px-4 py-2 text-left ordertablehead"> Time </th>
+                    <th class="border px-4 py-2 text-left ordertablehead"> Status </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(orders.length) { %>
+                    <% orders.forEach((order) => { %>
+                        <tr>
+                            <td class="border px-4 py-2 ordertabledata">
+                                <a class="link" href="orders/<%= order._id%>"> 
+                                   <%= order._id%>
+                                </a>
+                            </td>
+                            <td class="border px-4 py-2 ordertabledata">
+                                <%= order.contact%>
+                            </td>
+                            <td class="border px-4 py-2 ordertabledata">
+                                <%= order.address%>
+                            </td>
+        
+                            <td class="border px-4 py-2 ordertabledata">
+                                <%= moment(order.createdAt).format('hh:mm A') %>
+                            </td>
+
+                            <td class="border px-4 py-2 ordertabledata">
+                                <%= order.status%>
+                            </td>
+
+                        </tr>
+                   <% }) %>
+                
+                <% } else { %>
+                    <tr>
+                        <td class="p-4 noorders"> <span> No Orders found!</span></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</section>

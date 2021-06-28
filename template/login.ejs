@@ -1,0 +1,30 @@
+<section class="login">
+	<div class="container logincont" id="container">
+		<div class="form-container log-in-container">
+			<form action="/login" class="loginform" method="POST">
+				<h1 class="loginheading">Login</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
+					<a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a>
+				</div>
+				<span class="useacctext">or use your account</span>
+				<input type="email" style="font-size:15px;" placeholder="Email" name="email" autocomplete="off" required/>
+				<input type="password" style="font-size:15px;" placeholder="Password" name="password" autocomplete="off" required/>
+			
+				<% if(messages.error) { %>
+					<span class="text-red-500 text-xl"><%= messages.error %></span><br>
+					<% } %>
+
+				<a href="#" class="forgettext">Forgot your password?</a>
+				<button class="loginbtn" type="submit">Log In</button><br>
+                <a href="register" class="forgettext">Create an Account</a>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-right">
+				</div>
+			</div>
+		</div>
+	</div>
+    </section>

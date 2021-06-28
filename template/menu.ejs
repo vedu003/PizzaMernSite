@@ -1,0 +1,46 @@
+<section class="menu" id="menu">
+    <div class="menuclr">
+        <div class="container-fluid">
+            <div class="container heading text-center">
+                <div class="position-relative d-flex align-items-center justify-content-center">
+                    <h1 class="display-1 text-uppercase text-white backwardheading" style="-webkit-text-stroke: 1px #bec4ca">
+                        Pizzas
+                    </h1>
+                    <h1 class="position-absolute insideheading">Pizzas</h1>
+                </div> 
+            </div>
+        </div>
+    
+        <div class="row mt-3">
+            <div class="pizza-filter mb-3">
+                <a href="/menu"><button type="button" class="sizebtn">Small <span class="ml-4">|</span></button></a>
+                <a href="/medium"><button type="button" class="sizebtn">Medium <span class="ml-4">|</span> </button></a>
+                <a href="/large"><button type="button" class="sizebtn">Large <span class="ml-4">|</span></button></a>
+                <a href="/beverages"><button type="button" class="sizebtn">Beverages</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center mt-5">
+        <div class="grid-container ml-5">
+            <% pizzas.forEach(function(pizza){ %>
+                <% if(pizza.size === 'Small') { %>
+                <div class="pizzasofmenu">
+                    <img src="img/<%= pizza.image %>" alt="" class="mb-4 mx-auto">
+                    <div class="text-center">
+                        <h2 class="mb-4 pizzaname"><%= pizza.name %></h2>
+                        <span class="pizzasize py-1 px-4 rounded-full"><%= pizza.size %></span>
+                        <div class="flex item-center justify-around mt-6">
+                            <span class="font-bold pizzaprice mt-2">₹<%= pizza.price %></span>
+                            <button data-pizza="<%= JSON.stringify(pizza) %>" class="add_to_cart py-1 px-6 rounded-full flex item-center font-bold" id="addtocartbtn">
+                                <span class="mr-3">Add</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div> 
+    </div>
+    <div class="py-3"></div>
+</section>

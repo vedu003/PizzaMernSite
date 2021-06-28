@@ -1,0 +1,70 @@
+<section class="cart py-16">
+
+    <% if(session.cart) { %>
+    <div class="order container mx-auto xl:w-1/2">
+        <div class="flex item-center border-b border-gray-300 pb-4">
+            <img src="img/cart-black.png" alt="cart">
+            <h1 class="font-bold ml-4 ordersummaryheading">Order Summary</h1>
+        </div>
+        <div class="pizza-list">
+            <% for (let pizza of Object.values(session.cart.items)) { %>
+                <div class="flex item-center mt-5">
+                    <img class="summerypizza" src="img/<%= pizza.item.image %>" alt="">
+                    <div class="flex-1 ml-4 mt-10 xl:mt-20">
+                        <h1 class="pizzaname mb-2"><%= pizza.item.name %></h1>
+                        <span class="pizzasize"><%= pizza.item.size %></span>
+                    </div>
+                    <div class=" mt-10 xl:mt-20">
+                        <span class="flex-1 summryqty"><%= pizza.qty %> Pcs</span>
+                        <span class="font-bold summryprice">₹<%= pizza.item.price * pizza.qty %></span>
+                    </div>
+                    <!-- <div class="ml-5 mt-10 xl:mt-20">
+                        <button class="deletefromcart py-1 px-6 rounded-full flex item-center font-bold" id="addtocartbtn">
+                            <span>Delete</span>
+                        </button>
+                    </div> -->
+                </div>
+            <% } %>
+        </div>
+        <hr class="mt-5">
+        <div class="text-right py-4">
+            <div>
+                <span class="summrytotal font-bold mr-3">Total Amount:</span>
+                <span class="summarytotalprice font-bold">₹<%= session.cart.totalPrice %></span>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-7 col-3"></div>
+                    <div class="col-md-5 col-9 mt-4">
+                        <% if(user) { %>
+                        <div>
+                            <form action="/orders" method="POST">
+                                <div class="form-group">
+                                    <input type="tel" style="font-size:15px;" class="form-control py-4" placeholder="Phone Number" name="contact" pattern="^\d{10}$" required> 
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" style="font-size:15px;" class="form-control py-4" placeholder="Address" name="address" required> 
+                                </div>
+                                <a href="#"></a><button class="submitbtn" type="submit">Order Now</button></a>
+                            </form>
+                        </div>
+                        <% } else { %> 
+                        <a href="/login"><button class="submitbtn">Login to Continue</button></a>
+                        <% } %>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="empty-cart py-16">
+        <div class="container mx-auto text-center">
+            <h1 class="font-bold mb-2 emptyheading">Cart Empty😕</h1>
+            <p class="emptycartpara">You Probably haven't ordered a pizza yet. <br>
+            To order a pizza, go to main page.</p>
+            <img class="w-4/12 mx-auto" src="img/empty-cart.png" alt="empty-cart">
+            <a href="/"><button class="gobackbtn">Go Back</button></a>
+        </div>
+    </div>
+    <% } %>
+</section>

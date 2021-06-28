@@ -1,0 +1,29 @@
+<section class="login">
+	<div class="container logincont" id="container">
+		<div class="form-container signup-container">
+			<form action="/register" method="POST" class="signupform">
+				<h1 class="signupheading">Signup</h1>
+
+                <input type="text" style="font-size:15px;" placeholder="Name" name="name" value="<%= messages.name %>" autocomplete="off" required/>
+				<% if(messages.error) { %>
+				<span class="text-red-500 text-xl"><%= messages.error %></span>
+				<% } %>
+				<input type="email" style="font-size:15px;" placeholder="Email" name="email" value="<%= messages.email %>" autocomplete="off" required/>
+                <input type="tel" style="font-size:15px;" placeholder="Contact No." name="contact" value="<%= messages.contact %>" pattern="^\d{10}$" autocomplete="off" required/>
+				<input type="password" style="font-size:15px;" placeholder="Password" name="pass" autocomplete="off" required/>
+                <input type="password" style="font-size:15px;" placeholder="Confirm Password" name="cpass" autocomplete="off" required/>
+				<% if(messages.err) { %>
+					<span class="text-red-500 text-xl"><%= messages.err %></span>
+					<% } %>
+				<button class="regibtn" type="submit">Register</button><br>
+                <a href="login" class="alreadytext">Already have an Account?</a>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlayregi">
+				<div class="overlay-panel-regi overlay-right">
+				</div>
+			</div>
+		</div>
+	</div>
+    </section>
