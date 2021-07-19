@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 1111;
+const mongoose = require("mongoose");
 require("./db/conn")
+
+const DB = process.env.DATABASE
 
 const Menu =  require("./models/menu");
 const Register =  require("./models/user");
@@ -16,7 +19,7 @@ const expressLayout=require("express-ejs-layouts");
 const passport = require('passport');
 const moment = require('moment');
 const Emitter = require('events');
-
+app.locals.moment = require('moment')
 
 //Middleware
 const guest = require('../public/js/middleware/guest');
@@ -47,7 +50,7 @@ app.use(express.json());
 // Session Store
 
 const mongoStore =  new MongoDbStore({
-    uri: 'mongodb://localhost:27017/pizzamern',
+    uri: DB,
     collection: 'sessions'
 })
 
@@ -228,13 +231,11 @@ app.post("/update-cart",(req,res)=> {
     return res.json({ totalQty: req.session.cart.totalQty})
 })
 
-
 app.get("/clearcart",(req,res)=> {
 
     delete req.session.cart;
     res.redirect('/cart')
 })
-
 
 app.post("/orders",auth,(req,res)=> {
     
